@@ -28,6 +28,8 @@ function App() {
         ]
     )
 
+    const [showAddTask, setShowAddTask] = useState(false)
+
     //Delete Task
     const deleteTask = (id) => {
         setTasks(tasks.filter((task) => task.id !== id))
@@ -47,8 +49,8 @@ function App() {
 
   return (
     <div className="container">
-        <Header />
-        <AddTask addTask={addTask} />
+        <Header showAddTask={() => (setShowAddTask(!showAddTask))} showAdd={showAddTask} />
+        { showAddTask && <AddTask addTask={addTask} /> }
         <Tasks tasks={tasks} setTasks={setTasks} deleteTask={deleteTask} toggleReminder={toggleReminder} />
     </div>
   );
